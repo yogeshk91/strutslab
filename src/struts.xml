@@ -1,0 +1,24 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- First Way of mapping -->
+<!-- <struts>
+    <package name="configPack" extends="struts-default">
+        <action name="adder" class="action.AdderAction" method="execute"/>
+        <result name="success">/result.jsp</result>
+    </package>
+</struts> -->
+<!-- Second way of mapping -->
+<struts>
+    <package name="configPack">
+        <result-types>
+            <result-type name="dispatcher" class="org.apache.struts2.dispatcher.ServletDispatcherResult" default="true"/>
+        </result-types>
+        <interceptors>
+           <interceptor name="params" class="com.opensymphony.xwork2.interceptor.ParametersInterceptor"/>
+        </interceptors>
+        <action name="adder" class="action.AdderAction" method="execute"/>
+        <interceptor-ref name="params"/>
+        <result name="success">/result.jsp</result>
+    </package>
+</struts>
